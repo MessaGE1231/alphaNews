@@ -1,0 +1,552 @@
+* {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* О нас */
+
+
+#modalAppInfo_text {
+align-items: center;
+flex-direction: column;
+}
+
+#modalAppInfo_text > h1 {
+    padding-top: 10px;
+    font-size: 36px;
+
+}
+
+#modalAppInfo_text > h2 {
+    font-size: 32px;
+    font-weight: lighter;
+}
+
+#infoText {
+    width: 70%;
+    font-size: 24px;
+    padding: 10px;
+}
+
+/* Аккордеон с регистрацией */
+
+#accordeonReg {
+    display: none;
+    position: absolute;
+    background-color: wheat;
+    width: 300px;
+    height: min-content;
+    padding: 20px 0px 50px 0px;
+    top: 60px;
+    background-color: rgb(27, 27, 27);
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+form > input {
+    background-color: #cecece;
+}
+
+#loginErrorEmpty {
+    background-color: darkred;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    border: none;
+    top: 5px;
+}
+
+
+
+
+#authButton {
+    background: none;
+    color: white;
+    border: none;
+    width: fit-content;
+    padding: 5px;
+}
+
+#accordeonRegContent > h1 {
+color: white;
+text-align: center;
+padding: 10px;
+font-size: 24px;
+
+}
+
+#accordeonRegContent > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#accordeonRegContent > form > input {
+    padding: 10px;
+    width: fit-content;
+}
+
+#accordeonRegContent > form > input {
+    margin-top: 10px;
+}
+
+#accordeonRegContent > form > button {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+
+
+.modalAppSection {
+    display: none;
+    position: fixed;
+    align-self: center;
+    z-index: 1;
+    width: 95%;
+    height: 95%;
+    background-color: rgb(252, 252, 252);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    overflow-y: scroll;
+    border: 3px solid black;
+}
+
+.modalContent {
+    display: none;
+    width: 95%;
+    height: 95%;
+    align-items: center;
+    padding: 20px 0px 100px 0px;
+    flex-direction: column;
+
+}
+
+.modalContenAuthorAndDate {
+    width: 70%;
+    height: 5%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333333;
+}
+
+.modalContenAuthorAndDate > article {
+    padding: 15px;
+}
+
+.modalAppText {
+    width: 70%;
+    font-size: 24px;
+    padding: 15px;
+}
+
+.modalContent > img{
+    width: 70%;
+    height: 60%;
+}
+
+/* Отступы на секции */
+.paddingOnSection {
+    padding: 50px 100px 50px 100px;
+}
+
+
+/* Кнопки */
+
+button {
+    width: min-content;
+    height: min-content;
+}
+
+.buttonTrueBackground {
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 24px;
+}
+
+.buttonFalseBackground {
+    padding: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+    font-size: 24px;
+}
+
+/* Заголовоки блоков */
+
+.primaryZagolovok_center {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+/* Хэдер */
+header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 5px 20px 15px 20px;
+    height: min-content;
+    height: 30px;
+    background-color: rgb(27, 27, 27);
+    border-bottom: 3px solid #8a8a8a;
+}
+
+/* Навигация */
+#logo {
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    text-decoration: none;
+
+}
+
+nav > a {
+color: white;
+text-decoration: none;
+}
+
+/* Главный экран */
+
+#glavnaya {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: gray;
+    padding: 0px 100px 0px 100px;
+    background-image: url(images/backgroundMainPage.png);
+    background-repeat: no-repeat;
+}
+
+/* Заголовок на главной странице */
+
+#zagolovokInGlavnaya {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+#zagolovokInGlavnaya > h1 {
+    font-size: 46px;
+    width: 540px;
+    padding: 20px;
+    color: white;
+}
+
+#zagolovokInGlavnaya > button {
+    margin-left: 20px;
+}
+
+#zagolovokInGlavnaya > button:not(.buttonTrueBackground) {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+/* Навигация по блокам страницы */
+
+.navBlockBase {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    border: 3px solid #91705F;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#navOnBlocks {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+#navOnBlocks > span > a {
+    text-decoration: none;
+    color: white;
+}
+#navOnBlocks > span {
+    width: 350px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rdsNavButton {
+    background-image: url(images/navigationOnBlocks/RdsNavBackground.png);
+}
+
+#f1NavButton {
+    background-image: url(images/navigationOnBlocks/F1NavBackground.png);
+}
+
+#autocraftNavButton {
+    background-image: url(images/navigationOnBlocks/AutoCraftNavBackground.png);
+}
+
+#actionsNavButton {
+    background-image: url(images/navigationOnBlocks/ActionsBackground.png);
+}
+
+/* Черная линия */
+
+.blackLine {
+    background-color: black;
+    height: 50px;
+}
+
+/* Автомобилестроение */
+
+#autoCraftSection {
+    background-color: #202022;
+    height: min-content;
+}
+
+/* Контейнер новости */
+
+.newBase {
+    width: 400px;
+    height: 350px;
+    background-color: white;
+}
+
+/* Изображение новости */
+
+.imgBaseNew {
+    height: 200px;
+    width: 400px;
+}
+
+/* Раздел новости и дата  */
+
+.newBase > span {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    align-items: center;
+}
+
+/* Дата */
+
+.date {
+    text-align: end;
+}
+
+/* Текст ниже заголовка в новости */
+
+.newBase > h4 {
+font-weight: lighter;
+padding-left: 10px;
+padding-top: 5px;
+}
+
+/* Заголовок в новости */
+
+.newBase > h3 {
+    padding-left: 10px;
+}
+
+/* Тип новости */
+
+.nameNew {
+    font-weight: bold;
+    background-color: #91705F;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 2px 20px 2px 20px;
+}
+
+.newsFlexContainer {
+    display: flex;
+    gap: 20px;
+    padding-top: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Большая новость */
+
+.autoCraftBigNew {
+    background-image: url(images/autoCraft/BigNewAutocraft.png);
+    background-repeat: no-repeat;
+    background-position: 60%;
+    background-size: cover;
+    width: 820px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Раздел большой новости */
+
+.bigNewType {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #91705F;
+    padding: 5px 15px 5px 15px;
+    border-radius: 5px;
+    width: min-content;
+    height: min-content;
+    margin: 10px;
+}
+
+
+.bigNewTextLeft > span {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+    
+}
+
+.bigNewTextLeft > h1 {
+    color: white;
+    font-size: 26px;
+    padding-left: 10px;
+    
+}
+
+.bigNewTextLeft > h2 {
+    color: white;
+    font-size: 22px;
+    font-weight: lighter;
+    padding-left: 10px;
+}
+
+.bigNewTextSection {
+    width: 820px;
+    height: 150px;
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    background-color: rgba(0, 0, 0, 0.589);
+    
+    
+}
+
+
+
+.bigNewClock {
+    margin-bottom: 2px;
+}
+
+.binNewAuthor {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ gap: 5px;
+}
+
+.binNewAuthor > img {
+    width: 50px;
+    height: 50px;
+}
+
+.binNewAuthor > h1 {
+color: white;
+font-size: 16px;
+}
+
+.binNewAuthor > h2 {
+color: white;
+font-size: 14px;
+font-weight: lighter;
+}
+
+/* Кнопка добавления новости в раздел Автомобилестроение */
+
+.addNewsAutocraft {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Продвижение новостей */
+#prodvizhenirSection {
+    background-color: #272727;
+    padding: 50px 100px 50px 100px;
+}
+
+
+
+
+.prodvizhenirBlock > h1 {
+    color: white;
+    font-size: 32px;
+    text-align: center;
+}
+
+
+
+.prodvizhenirBlock {
+    background-color: #333333;
+    width: 380px;
+    height: min-content;
+    padding: 50px;
+    gap: 20px;
+}
+
+.prodvizhenieBlockText {
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 15px 0px 15px 0px;
+gap: 5px;
+}
+
+/* текст */
+
+
+.prodvizhenieBlockText > span > img {    
+width: 15px;    
+height: 15px;
+margin-top: 6px;
+
+}
+
+.prodvizhenieBlockText > span {
+display: flex;
+}
+
+.prodvizhenieBlockText > span > p {
+color: white;
+font-size: 24px;
+padding-left: 3px;
+}
+
+.prodvizhenieBlockButton {
+text-align: center;
+}
+
+#prodvizhenieAllBlock_Flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Анимации */
+
+.imgBaseNew {
+transition: .2s;
+}
+
+.imgBaseNew:hover {
+height: 210px;
+}
+
+#f1Section {
+        background-color: #202022;
+        height: min-content;
+}

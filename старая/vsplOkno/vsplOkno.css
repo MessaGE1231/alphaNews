@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+h1 {
+   font-family: sans-serif;
+}
+
+p {
+   font-family: sans-serif;
+}
+
+  #registerWindowSection {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 10px;
+    z-index: 20;
+    display: none;
+  }
+  
+  #overley {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    display: none;
+  }
+  
+  #link {
+    margin: 5px;
+    text-decoration: none;
+    color: burlywood;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: black;
+    z-index: 1;
+  }
+  
+  .artRegister {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .artRegister > input {
+    padding: 8px;
+    font-size: 16;
+    border: 2px solid #FFFFFF;
+    border-radius: 5px;
+    width: 150px;
+    height: 20px;
+    color: #084259;
+    background-color: inherit;
+    margin: 5px;
+  }
+  
+  #registerWindowSection > h1 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #ffffff;
+  }
+
+  .artRegister2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  #openButtonRegister {
+    font-weight: bolder;
+    font-size: 16px;
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    border-radius: 5px;
+    width: 200px;
+    height: max-content;
+    padding: 10px;
+    margin: 5px;
+  }
+
+  #registerButton {
+    width: 170px;
+    height: 35px;
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
