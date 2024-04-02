@@ -1,3 +1,4 @@
+
 * {
     font-family: sans-serif;
     margin: 0;
@@ -30,6 +31,50 @@ flex-direction: column;
 }
 
 /* Аккордеон с регистрацией */
+
+.authDisplay:not(button) {
+    color: white;
+}
+
+.authDisplay {
+    display: none;
+}
+
+@keyframes authDialogOpen {
+    0% {
+        opacity: 0.5;
+        margin-top: 0;
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 5px;
+    }
+}
+
+@keyframes dialogAppClose {
+    0% {
+opacity: 1;
+margin-top: 5px;
+    }
+
+    100% {
+opacity: 0;
+margin-top: 0;
+    }
+}
+
+#authDialogApp {
+    background-color: green;
+    color: white;
+    border: none;
+    margin: auto;
+    margin-top: 5px;
+    top: 0;
+    padding: 5px;
+    animation: authDialogOpen .2s ease-in-out;
+}
+
 
 #accordeonReg {
     display: none;
@@ -142,6 +187,18 @@ font-size: 24px;
     width: 70%;
     font-size: 24px;
     padding: 15px;
+}
+
+.modalAppText > h1 {
+    font-size: 26px;
+    padding-bottom: 10px;
+}
+
+.modalAppText > h2 {
+    font-size: 24px;
+    padding: 10px 20px;
+    border-left: 5px solid darkred;
+    color: darkred;
 }
 
 .modalContent > img{
@@ -492,18 +549,16 @@ font-weight: lighter;
 
 .prodvizhenirBlock {
     background-color: #333333;
-    width: 380px;
     height: min-content;
-    padding: 50px;
-    gap: 20px;
+    padding: 70px 50px;
 }
 
 .prodvizhenieBlockText {
 display: flex;
 flex-direction: column;
 justify-content: center;
-padding: 15px 0px 15px 0px;
-gap: 5px;
+padding: 15px 0px;
+gap: 10px;
 }
 
 /* текст */
@@ -518,6 +573,8 @@ margin-top: 6px;
 
 .prodvizhenieBlockText > span {
 display: flex;
+align-items: center;
+gap: 20px;
 }
 
 .prodvizhenieBlockText > span > p {
@@ -534,6 +591,8 @@ text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 40px;
+    margin-bottom: 60px;
 }
 
 /* Анимации */
@@ -549,4 +608,97 @@ height: 210px;
 #f1Section {
         background-color: #202022;
         height: min-content;
+}
+
+#modalAppAddNewsContent > h1 {
+    color: white;
+    text-align: center;
+    font-size: 32px;
+}
+
+#modalAppAddNewsContent {
+    display: flex;
+    flex-direction: column;
+}
+ 
+#modalAppAddNews {
+    display: none;
+    background-color: #333333;
+    padding: 50px 100px;
+    border-radius: 5px;
+    position: fixed;
+    align-self: center;
+    z-index: 1;
+    width: 70%;
+    height: 80%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#formAddNews {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    padding-top: 20px;
+}
+
+#formAddNews > input {
+    padding: 10px;
+    
+}
+
+#formAddNews > button {
+    align-self: center;
+    padding: 10px;
+}
+
+@keyframes addNewDialogOpen {
+    0% {
+        opacity: 0.5;
+        top: 0;
+    }
+
+    100% {
+        opacity: 1;
+        top: 10px;
+    }
+}
+
+@keyframes addNewdialogAppClose {
+    0% {
+opacity: 1;
+top: 10px;
+    }
+
+    100% {
+opacity: 0;
+top: 0;
+    }
+}
+
+
+#dialogAddNews {
+    margin: auto;
+    position: fixed;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 15px;
+    color: white;
+    background-color: darkred;
+    border: none;
+    border-radius: 5px;
+    top:10px;
+    animation: addNewDialogOpen .2s ease-in-out;
+}
+
+
+#autoCraftSection {
+    display: flex;
+    flex-direction: column;
+}
+
+#autoCraftSection > #addNewsAutocraftOpen {
+    align-self: center;
+    margin-top: 20px;
 }

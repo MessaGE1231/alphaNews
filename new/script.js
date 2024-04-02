@@ -20,7 +20,6 @@ document.body.style.overflow = "unset"}
 
 
 const imgElementsHTML = document.body.querySelectorAll(".modalTrigger")
-
 imgElementsHTML.forEach((el) => {
     el.addEventListener("click", (event) => {
         let elementId = [...event.srcElement.classList]
@@ -129,13 +128,76 @@ if (error === false) {
 
 })
 
+let addedNews = []
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
+// ПОДГРУЗКА ДОБАВЛЕННЫХ НОВОСТЕЙ
+
+let date = new Date
+
+if (localStorage.getItem('newsAdded')) {
+    addedNews = JSON.parse(localStorage.getItem('newsAdded'))
+    addedNews.forEach((el) => {
+        document.getElementById('autocrSec').insertAdjacentHTML('beforebegin', `<article class="newBase">
+        <img src="${el.src}" class="imgBaseNew modalTrigger autoCraftModal_${el.id}">
+    
+        <section class="modalAppSection" id="autoCraftModal_${el.id}">
+            <article class="modalContent" id="autoCraftModal_${el.id}Con">
+                <img src="${el.src}" alt="">
+                <section class="modalContenAuthorAndDate">
+    <article><p>${el.authorNew}, ${date.getDate()}.${date.getUTCMonth()}.${date.getFullYear()}</p></article>
+    <article><p>Alpha-News</p></article>
+                </section>
+    
+                <section class="modalAppText">
+                <h1>${el.zag}</h1>
+                <p>${el.textContent}</p>
+             </section>
+    
+            </article>
+         </section>
+    
+        <span>
+        <p class="nameNew">Автомобилестроение</p>
+        <p class="date">${date.getDate()}.${date.getUTCMonth()}.${date.getFullYear()}</p>
+        </span>
+        <h3>${el.zag}</h3>
+        <h4>${el.podZag}</h4>
+    </article>`)
+    })
+}
+
+
+const imgElementsHTML = document.body.querySelectorAll(".modalTrigger")
+imgElementsHTML.forEach((el) => {
+    el.addEventListener("click", (event) => {
+        let elementId = [...event.srcElement.classList]
+        elementId = elementId[2]
+        modalAppOpen(`#${elementId}`)
+        closeModal(`#${elementId}`)
+    })
+})
+// ПОДГРУЗКА ДОБАВЛЕННЫХ НОВОСТЕЙ
+
     document.getElementById('authForm').style.display = "none"
+            // Работа с окном личного кабинета
     if (JSON.parse(localStorage.getItem("auth")) === true) {
+
         document.getElementById('authForm').style.display = "none"
         document.getElementById('regForm').style.display = 'none'
         document.getElementById('regAccordeonH1').textContent = "Личный кабинет"
         document.getElementById('authButton').textContent = ''
+  
+        document.getElementById('loginAuth').style.display = 'block'
+        document.getElementById('emailAuth').style.display = 'block'
+        document.getElementById('outAccount').style.display = 'block'
+
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'))
+        document.getElementById('loginAuth').textContent = `Ваш логин: ${currentUser.login}`
+        document.getElementById('emailAuth').textContent = `Ваш email: ${currentUser.email}`
+        // Работа с окном личного кабинета
     }
 })
 
@@ -162,15 +224,144 @@ document.forms.authForm.submit.addEventListener('click', (event) => {
     users.forEach((el) => {
         if (el.login === loginAuth.value) {account = el}
     })
-    if (loginAuth.value === account.login && passwordAuth.value === account.password) {alert('Вход выполнен успешно')
-localStorage.setItem('auth', true)
-localStorage.setItem('currentUser', JSON.stringify(account))
-document.getElementById('authForm').style.display = "none"
-document.getElementById('regForm').style.display = 'none'
-document.getElementById('regAccordeonH1').textContent = "Личный кабинет"
-document.getElementById('authButton').textContent = ''
+    if (loginAuth.value === account.login && passwordAuth.value === account.password) {
+        document.getElementById('authDialogApp').textContent = 'Вход выполнен успешно!'
+        document.getElementById('authDialogApp').toggleAttribute("open")
+        setTimeout(() => {document.getElementById('authDialogApp').style.animation = 'dialogAppClose .2s ease-in-out'}, 1000)
+        setTimeout(() => {document.getElementById('authDialogApp').removeAttribute("open")}, 1200)
+
+        setTimeout(() => {
+            localStorage.setItem('auth', true)
+            localStorage.setItem('currentUser', JSON.stringify(account))
+            document.getElementById('authForm').style.display = "none"
+            document.getElementById('regForm').style.display = 'none'
+            document.getElementById('regAccordeonH1').textContent = "Личный кабинет"
+            document.getElementById('authButton').textContent = ''
+            document.getElementById('loginAuth').style.display = 'block'
+            document.getElementById('emailAuth').style.display = 'block'
+            document.getElementById('outAccount').style.display = 'block'
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'))
+            document.getElementById('loginAuth').textContent = `Ваш логин: ${currentUser.login}`
+            document.getElementById('emailAuth').textContent = `Ваш email: ${currentUser.email}`
+            document.getElementById('authDialogApp').style.animation = "authDialogOpen .2s ease-in-out"
+        }, 1400)
+
+
+
 
 } else {alert('Не правильные данные')}
-ы
+
+
+})
+
+document.querySelector('#outAccount').addEventListener('click', () => {
+    document.getElementById('authDialogApp').textContent = 'Вы вышли с аккаунта!'
+document.getElementById('authDialogApp').toggleAttribute("open")
+
+    setTimeout(() => {document.getElementById('authDialogApp').style.animation = 'dialogAppClose .2s ease-in-out'}, 1800)
+    setTimeout(() => {localStorage.removeItem('currentUser'); localStorage.removeItem('auth'); document.getElementById('authDialogApp').removeAttribute("open")}, 2000)
+    setTimeout(() => {
+        document.getElementById('loginAuth').style.display = 'none'
+        document.getElementById('emailAuth').style.display = 'none'
+        document.getElementById('outAccount').style.display = 'none'
+
+        document.getElementById('authButton').textContent = 'Регистрация'
+    document.getElementById('regForm').style.display = 'none'
+    document.getElementById('regAccordeonH1').textContent = "Авторизация"
+    document.getElementById('authForm').style.display = "flex"
+    document.getElementById('authDialogApp').style.animation = "authDialogOpen .2s ease-in-out"
+    }, 2200)
+
+})
+
+// Добавление новостей
+
+// Кнопка открывания
+document.body.addEventListener('keydown', (ev) => {
+    ev.key === 'Escape' ? document.getElementById('modalAppAddNews').style.display = 'none' : false
+    document.getElementById('modalAppAddNews').style.display === 'block' ? document.body.style.overflow = "hidden" : document.body.style.overflow = "unset"
+
+})
+
+document.getElementById('addNewsAutocraftOpen').addEventListener('click', (ev) => {
+    if (JSON.parse(localStorage.getItem('auth')) === true) {
+    document.getElementById('modalAppAddNews').style.display = 'block'
+    document.getElementById('modalAppAddNews').style.display === 'block' ? document.body.style.overflow = "hidden" : document.body.style.overflow = "unset"
+} else {
+    document.getElementById('dialogAddNews').toggleAttribute('open')
+    setTimeout(() => {document.getElementById('dialogAddNews').style.animation = 'addNewdialogAppClose .3s infinite'}, 2000)
+    setTimeout(() => {document.getElementById('dialogAddNews').toggleAttribute('open');document.getElementById('dialogAddNews').style.animation = 'addNewDialogOpen .2s ease-in-out'}, 2200)
+}
+    
+
+
+
+})
+// Кнопка открывания
+
+
+document.getElementById('addNewsAutoCraft').addEventListener('click', (event) => {
+    event.preventDefault()
+    let srcImage = document.forms.formAddNewsAutoCraft.src.value
+    let text = document.forms.formAddNewsAutoCraft.text.value
+    let author = document.forms.formAddNewsAutoCraft.author.value
+    let h1 = document.forms.formAddNewsAutoCraft.h1.value
+    let h2 = document.forms.formAddNewsAutoCraft.h2.value
+    let secAdd = document.getElementById('autocrSec')
+    console.log(secAdd)
+    let date = new Date
+    console.log(date.getFullYear())
+
+    setTimeout(() => {
+        secAdd.insertAdjacentHTML('beforebegin', `<article class="newBase">
+    <img src="${srcImage}" class="imgBaseNew modalTrigger autoCraftModal_${addedNews.length}">
+
+    <section class="modalAppSection" id="autoCraftModal_${addedNews.length}">
+        <article class="modalContent" id="autoCraftModal_${addedNews.length}Con">
+            <img src="${srcImage}" alt="">
+            <section class="modalContenAuthorAndDate">
+<article><p>${author}, ${date.getDate()}.${date.getUTCMonth()}.${date.getFullYear()}</p></article>
+<article><p>Alpha-News</p></article>
+            </section>
+
+            <section class="modalAppText">
+            <h1>${h1}</h1>
+            <p>${text}</p>
+         </section>
+
+        </article>
+     </section>
+
+    <span>
+    <p class="nameNew">Автомобилестроение</p>
+    <p class="date">${date.getDate()}.${date.getUTCMonth()}.${date.getFullYear()}</p>
+    </span>
+    <h3>${h1}</h3>
+    <h4>${h2}</h4>
+</article>`)
+    }, 2000)
+    
+
+addedNews.push({
+    id: addedNews.length,
+    src: srcImage,
+    textContent: text,
+    authorNew: author,
+    zag: h1,
+    podZag: h2,
+    secAdd: secAdd
+})
+
+const imgElementsHTML = document.body.querySelectorAll(".modalTrigger")
+imgElementsHTML.forEach((el) => {
+    el.addEventListener("click", (event) => {
+        let elementId = [...event.srcElement.classList]
+        elementId = elementId[2]
+        modalAppOpen(`#${elementId}`)
+        closeModal(`#${elementId}`)
+    })
+})
+
+localStorage.setItem('newsAdded', JSON.stringify(addedNews))
 
 })
